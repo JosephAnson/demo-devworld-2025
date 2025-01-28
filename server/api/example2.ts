@@ -1,5 +1,6 @@
+import { ProductsResponseSchema } from '../schemas/product'
+
 export default defineEventHandler(async () => {
-  return {
-    message: 'Hello World',
-  }
+  const response = await $fetch('/api/mockProductEndpoint')
+  return ProductsResponseSchema.safeParse(response)
 })

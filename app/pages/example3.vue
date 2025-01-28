@@ -1,157 +1,109 @@
 <script setup lang="ts">
-import { AutoForm, AutoFormField } from '@/components/ui/auto-form'
+import type { InferModel } from 'drizzle-orm'
+import type { products } from '~~/server/db/schema'
+import { AutoForm } from '@/components/ui/auto-form'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { toast } from '@/components/ui/toast'
 import { h } from 'vue'
-import * as z from 'zod'
-import { Button } from '~/components/ui/button'
-import { toast } from '~/components/ui/toast'
+import { CreateProductSchema } from '~~/server/schemas/product'
 
-enum Sports {
-  Football = 'Football/Soccer',
-  Basketball = 'Basketball',
-  Baseball = 'Baseball',
-  Hockey = 'Hockey (Ice)',
-  None = 'I don\'t like sports',
-}
+type ProductType = InferModel<typeof products>
 
-const schema = z.object({
-  username: z
-    .string({
-      required_error: 'Username is required.',
+const { data: response } = await useFetch('/api/example3')
+const productList = computed(() => response.value?.data?.products || [])
+
+async function onSubmit(values: ProductType) {
+  try {
+    const response = await $fetch('/api/example3', {
+      method: 'POST',
+      body: values,
     })
-    .min(2, {
-      message: 'Username must be at least 2 characters.',
-    }),
 
-  password: z
-    .string({
-      required_error: 'Password is required.',
+    if (response.success) {
+      toast({
+        title: 'Success',
+        description: 'Product added successfully',
+        variant: 'default',
+      })
+
+      // Refresh the product list
+      const newData = await $fetch('/api/example3')
+      if (newData.success) {
+        response.value = newData
+      }
+    }
+    else {
+      toast({
+        title: 'Error',
+        description: response.error?.message || 'Failed to add product',
+        variant: 'destructive',
+      })
+    }
+  }
+  catch (error) {
+    toast({
+      title: 'Error',
+      description: error instanceof Error ? error.message : 'Failed to add product',
+      variant: 'destructive',
     })
-    .min(8, {
-      message: 'Password must be at least 8 characters.',
-    }),
-
-  favouriteNumber: z.coerce
-    .number({
-      invalid_type_error: 'Favourite number must be a number.',
-    })
-    .min(1, {
-      message: 'Favourite number must be at least 1.',
-    })
-    .max(10, {
-      message: 'Favourite number must be at most 10.',
-    })
-    .default(1)
-    .optional(),
-
-  acceptTerms: z
-    .boolean()
-    .refine(value => value, {
-      message: 'You must accept the terms and conditions.',
-      path: ['acceptTerms'],
-    }),
-
-  sendMeMails: z.boolean().optional(),
-
-  birthday: z.coerce.date().optional(),
-
-  color: z.enum(['red', 'green', 'blue']).optional(),
-
-  // Another enum example
-  marshmallows: z
-    .enum(['not many', 'a few', 'a lot', 'too many']),
-
-  // Native enum example
-  sports: z.nativeEnum(Sports).describe('What is your favourite sport?'),
-
-  bio: z
-    .string()
-    .min(10, {
-      message: 'Bio must be at least 10 characters.',
-    })
-    .max(160, {
-      message: 'Bio must not be longer than 30 characters.',
-    })
-    .optional(),
-
-  customParent: z.string().optional(),
-
-  file: z.string().optional(),
-})
-
-function onSubmit(values: Record<string, any>) {
-  toast({
-    title: 'You submitted the following values:',
-    description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
-  })
+  }
 }
 </script>
 
 <template>
-  <AutoForm
-    class="w-2/3 space-y-6"
-    :schema="schema"
-    :field-config="{
-      password: {
-        label: 'Your secure password',
-        inputProps: {
-          type: 'password',
-          placeholder: '••••••••',
-        },
-      },
-      favouriteNumber: {
-        description: 'Your favourite number between 1 and 10.',
-      },
-      acceptTerms: {
-        label: 'Accept terms and conditions.',
-        inputProps: {
-          required: true,
-        },
-      },
+  <BaseSection>
+    <Card class="mb-8">
+      <CardHeader>
+        <CardTitle>Example 3: End-to-End Type Safety with Drizzle</CardTitle>
+        <CardDescription class="text-green-500">
+          ✅ This example uses Drizzle for end-to-end type safety with AutoForm
+        </CardDescription>
+      </CardHeader>
+      <CardContent class="space-y-8">
+        <!-- Add Product Form -->
+        <Card>
+          <CardHeader>
+            <CardTitle>Add New Product</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <AutoForm
+              :schema="CreateProductSchema"
+              :field-config="{
+                name: {
+                  description: 'Enter the product name',
+                },
+                price: {
+                  description: 'Enter the product price',
+                  inputProps: {
+                    min: 0,
+                    step: 0.01,
+                  },
+                },
+                inStock: {
+                  component: 'switch',
+                  description: 'Is this product in stock?',
+                },
+              }"
+              class="space-y-6"
+              @submit="onSubmit"
+            />
+          </CardContent>
+        </Card>
 
-      birthday: {
-        description: 'We need your birthday to send you a gift.',
-      },
-
-      sendMeMails: {
-        component: 'switch',
-      },
-
-      bio: {
-        component: 'textarea',
-      },
-
-      marshmallows: {
-        label: 'How many marshmallows fit in your mouth?',
-        component: 'radio',
-      },
-
-      file: {
-        label: 'Text file',
-        component: 'file',
-      },
-    }"
-    @submit="onSubmit"
-  >
-    <template #acceptTerms="slotProps">
-      <AutoFormField v-bind="slotProps" />
-      <div class="!mt-2 text-sm">
-        I agree to the <button class="text-primary underline">
-          terms and conditions
-        </button>.
-      </div>
-    </template>
-
-    <template #customParent="slotProps">
-      <div class="flex items-end space-x-2">
-        <AutoFormField v-bind="slotProps" class="w-full" />
-        <Button type="button">
-          Check
-        </Button>
-      </div>
-    </template>
-
-    <Button type="submit">
-      Submit
-    </Button>
-  </AutoForm>
+        <!-- Product List -->
+        <Card>
+          <CardHeader>
+            <CardTitle>Current Products</CardTitle>
+          </CardHeader>
+          <CardContent class="space-y-4">
+            <div v-for="product in productList" :key="product.id" class="border rounded p-4">
+              <h3>{{ product.name }}</h3>
+              <p>Price: ${{ product.price }}</p>
+              <p>In Stock: {{ product.inStock ? 'Yes' : 'No' }}</p>
+            </div>
+          </CardContent>
+        </Card>
+      </CardContent>
+    </Card>
+  </BaseSection>
 </template>
