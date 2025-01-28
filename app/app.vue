@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { ConfigProvider } from 'radix-vue'
+import Toaster from '@/components/ui/toast/Toaster.vue';
+import { ConfigProvider } from 'radix-vue';
 
 const useIdFunction = () => useId()
 </script>
@@ -12,4 +13,5 @@ const useIdFunction = () => useId()
       </NuxtLayout>
     </div>
   </ConfigProvider>
+  <Toaster />
 </template>

@@ -10,17 +10,18 @@ import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
           <NavigationMenu>
             <NavigationMenuList class="flex flex-row gap-4">
               <NavigationMenuItem>
-                <NuxtLink to="/">
-                  <NavigationMenuLink :class="navigationMenuTriggerStyle()">
+                <NuxtLink to="/" :class="navigationMenuTriggerStyle()">
                     Example 1: Type Assertions
-                  </NavigationMenuLink>
+                </NuxtLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem as-child>
+                <NuxtLink to="/example2" :class="navigationMenuTriggerStyle()">
+                    Example 2: Zod Validation
                 </NuxtLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NuxtLink to="/example2">
-                  <NavigationMenuLink :class="navigationMenuTriggerStyle()">
-                    Example 2: Zod Validation
-                  </NavigationMenuLink>
+                <NuxtLink to="/example3" :class="navigationMenuTriggerStyle()">
+                    Example 3: Zod Form Validation
                 </NuxtLink>
               </NavigationMenuItem>
             </NavigationMenuList>

@@ -1,23 +1,22 @@
-# Nuxt 3 Minimal Starter
+# Beyond Type Checking - DevWorld 2025 Demo
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A demo project showcasing end-to-end type safety with TypeScript, Zod, and Nuxt 3. This repository accompanies the "Beyond Type Checking: Building Bulletproof TypeScript Applications" talk at DevWorld 2025.
 
-## Setup
+## 🎯 Key Features
 
-Make sure to install the dependencies:
+- End-to-end type safety from database to frontend
+- Runtime validation with Zod
+- Auto-generated form validation
+- Type-safe API endpoints
+- Database schema to TypeScript type generation
+
+## 🚀 Getting Started
+
+1. Install dependencies:
 
 ```bash
-# npm
-npm install
-
 # pnpm
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
 ## Development Server
@@ -25,51 +24,40 @@ bun install
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
-npm run dev
-
 # pnpm
 pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+Visit `http://localhost:3000` to see the demo in action.
+
+## 🏗️ Project Structure
+
+- `/server/schemas` - Zod schemas and type definitions
+- `/server/api` - API endpoints with runtime validation
+- `/app/pages` - Frontend pages with type-safe forms
+- `/server/db` - Database schema and configuration
+
+## 🛠️ Tech Stack
+
+- [Nuxt 3](https://nuxt.com) - Full-stack Vue framework
+- [Zod](https://zod.dev) - TypeScript-first schema validation
+- [Drizzle ORM](https://orm.drizzle.team) - Type-safe ORM
+- [shadcn-vue](https://www.shadcn-vue.com/) - UI components
+
+## 📚 Examples
+
+The project includes three examples showcasing different approaches to type safety:
+
+1. Type Assertions (unsafe)
+2. Zod Schema Validation
+3. End-to-End Type Safety with Drizzle
+
+## 📝 License
+
+MIT
+
+## 🤝 Contributing
+
+Contributions welcome! Please feel free to submit a Pull Request.

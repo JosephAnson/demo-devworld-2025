@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
 // Base Product Schema
-export const ProductSchema = z.object({
-  id: z.string().uuid(),
+export const productSchema = z.object({
+  id: z.string(),
   name: z.string().min(2, {
     message: 'Product name must be at least 2 characters.',
   }),
@@ -13,11 +13,17 @@ export const ProductSchema = z.object({
   available: z.enum(['AVAILABLE', 'DISCONTINUED']),
 }).describe('Product Details')
 
-export type Product = z.infer<typeof ProductSchema>
+export type ProductSchema = z.infer<typeof productSchema>
+
+// Update Product Schema
+export const updateProductSchema = productSchema.omit({ id: true })
+export type UpdateProductSchema = z.infer<typeof updateProductSchema>
 
 // Response Schema
-export const ProductsResponseSchema = z.object({
-  products: z.array(ProductSchema),
+export const productsResponseSchema = z.object({
+  products: z.array(productSchema),
 })
+export type ProductsResponseSchema = z.infer<typeof productsResponseSchema>
 
-export type ProductsResponse = z.infer<typeof ProductsResponseSchema>
+
+

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Product } from '~/server/schemas/product'
+import { type ProductSchema } from '~~/server/schemas/product'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 interface Props {
-  products: Product[]
+  products: ProductSchema[]
 }
 
 defineProps<Props>()

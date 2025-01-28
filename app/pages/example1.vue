@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { Product } from '~~/server/api/example1'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import type { ProductsResponseSchema } from "~~/server/schemas/product";
 
 // Unsafe type assertion example
-const { data: response } = await useLazyFetch('/api/example1')
-const products = computed(() => response.value?.products as Product[])
+const { data: response } = await useLazyFetch<ProductsResponseSchema>('/api/example1')
+const products = computed(() => response.value?.products)
 </script>
 
 <template>
@@ -16,7 +16,7 @@ const products = computed(() => response.value?.products as Product[])
           ⚠️ This example uses unsafe type assertions with 'as'
         </CardDescription>
       </CardHeader>
-      <CardContent class="space-y-4">
+      <CardContent class="space-y-4" v-if="products">
         <ProductList :products="products" />
       </CardContent>
     </Card>

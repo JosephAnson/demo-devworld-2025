@@ -1,5 +1,4 @@
 // Example of unsafe type assertions
-
 export interface Product {
   id: string
   name: string
@@ -7,6 +6,10 @@ export interface Product {
   inStock: boolean
 }
 
+interface Products {
+  products: Product[]
+}
+
 export default defineEventHandler(async () => {
-  return await $fetch<{ products: Product[] }>('/api/mockProductEndpoint')
+  return await $fetch<Products>('/api/mock/example1')
 })
