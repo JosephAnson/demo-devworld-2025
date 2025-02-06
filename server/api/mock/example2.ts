@@ -5,14 +5,14 @@ export default defineEventHandler(() => {
       name: 'Product 1',
       price: '9.99',
       inStock: 'true',
-      available: 'AVAILABLE',
+      productStatus: 'AVAILABLE',
     },
     {
       id: 2, // Intentionally wrong type (number instead of string)
       name: 'Product 2',
       price: '19.99', // Intentionally wrong type (string instead of number)
       inStock: 'false', // Intentionally wrong type (string instead of boolean)
-      available: 'DISCONTNUED', // Intentionally spelt wrong
+      productStatus: 'DISCONTNUED', // Intentionally spelt wrong
     },
   ]
 

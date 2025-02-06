@@ -11,7 +11,7 @@ defineProps<Props>()
 </script>
 
 <template>
-  <Card :class="{'border !border-red-200': product.available === 'DISCONTINUED'}">
+  <Card :class="{'border !border-red-200': product.productStatus === 'DISCONTINUED'}">
     <CardContent class="p-4">
       <h3 class="text-lg font-semibold mb-2">
         {{ product.name }}
@@ -33,8 +33,8 @@ defineProps<Props>()
         </p>
         <p class="flex justify-between">
           <span class="text-muted-foreground">Availability:</span>
-          <span v-if="product.available === 'AVAILABLE'" class="font-medium">Available</span>
-          <span v-else-if="product.available === 'DISCONTINUED'" class="font-medium text-red-300">Unavailable</span>
+          <span v-if="product.productStatus === 'AVAILABLE'" class="font-medium">Available</span>
+          <span v-else-if="product.productStatus === 'DISCONTINUED'" class="font-medium text-red-300">Unavailable</span>
           <span v-else class="font-medium">Unknown</span>
         </p>
         <p class="flex justify-between">

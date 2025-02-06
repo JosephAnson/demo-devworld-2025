@@ -8,11 +8,11 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "postinstall": "nuxt prepare",
-    "preview": "nuxt preview",
-    "typecheck:app": "nuxt typecheck ./app",
-    "typecheck:server": "nuxt typecheck ./server",
+    "docker:up": "docker compose up -d",
+    "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "db:seed": "tsx drizzle/seed.ts"
   },
   "dependencies": {
     "@antfu/eslint-config": "^4.1.0",
@@ -22,6 +22,7 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.39.0",
+    "drizzle-seed": "^0.3.1",
     "drizzle-zod": "^0.7.0",
     "lucide-vue-next": "^0.474.0",
     "pg": "^8.13.1",

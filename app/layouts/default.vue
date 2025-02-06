@@ -24,6 +24,11 @@ import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
                     Example 3: Zod Form Validation
                 </NuxtLink>
               </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NuxtLink to="/example4" :class="navigationMenuTriggerStyle()">
+                    Example 4: Drizzle, Zod, and Form Validation
+                </NuxtLink>
+              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
         </BaseContainer>
