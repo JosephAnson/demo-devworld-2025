@@ -10,7 +10,7 @@ export const productSchema = z.object({
     message: 'Price must be a positive number.',
   }),
   inStock: z.boolean(),
-  available: z.enum(['AVAILABLE', 'DISCONTINUED']),
+  status: z.enum(['AVAILABLE', 'DISCONTINUED']),
 })
 
 export type ProductSchema = z.infer<typeof productSchema>

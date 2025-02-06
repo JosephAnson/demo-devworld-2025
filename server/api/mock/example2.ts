@@ -1,20 +1,20 @@
 export default defineEventHandler(() => {
-  const products =  [
+  const mockProducts =  [
     {
       id: '1',
       name: 'Product 1',
       price: '9.99',  // Intentionally wrong type (string instead of number)
       inStock: 'true', // Intentionally wrong type (string instead of boolean)
-      available: 'AVAILABLE',
+      status: 'AVAILABLE',
     },
     {
       id: 2, // Intentionally wrong type (number instead of string)
       name: 'Product 2',
       price: '19.99', // Intentionally wrong type (string instead of number)
       inStock: 'false', // Intentionally wrong type (string instead of boolean)
-      available: 'DISCONTNUED', // Intentionally spelt wrong
+      status: 'DISCONTNUED', // Intentionally spelt wrong
     },
   ]
 
-  return products
+  return mockProducts
 })
