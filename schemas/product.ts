@@ -11,7 +11,7 @@ export const productSchema = z.object({
   }),
   inStock: z.boolean(),
   available: z.enum(['AVAILABLE', 'DISCONTINUED']),
-}).describe('Product Details')
+})
 
 export type ProductSchema = z.infer<typeof productSchema>
 
@@ -20,9 +20,7 @@ export const updateProductSchema = productSchema.omit({ id: true })
 export type UpdateProductSchema = z.infer<typeof updateProductSchema>
 
 // Response Schema
-export const productsResponseSchema = z.object({
-  products: z.array(productSchema),
-})
+export const productsResponseSchema = z.array(productSchema)
 export type ProductsResponseSchema = z.infer<typeof productsResponseSchema>
 
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Card, CardContent } from '@/components/ui/card';
 import { XCircle } from 'lucide-vue-next';
-import type { ProductSchema } from '~~/server/schemas/product';
+import type { ProductSchema } from '~~/schemas/product';
 
 interface Props {
   product: ProductSchema

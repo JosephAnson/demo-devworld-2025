@@ -6,10 +6,6 @@ export interface Product {
   inStock: boolean
 }
 
-interface Products {
-  products: Product[]
-}
-
 export default defineEventHandler(async () => {
-  return await $fetch<Products>('/api/mock/example1')
+  return await $fetch<Product[]>('/api/mock/example1')
 })
