@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type ProductSchema } from '~~/server/schemas/product'
+import { type ProductSchema } from '~~/schemas/product'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 interface Props {

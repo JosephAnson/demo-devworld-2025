@@ -1,4 +1,4 @@
-import { productsResponseSchema } from '../schemas/product'
+import { productsResponseSchema } from '~~/schemas/product'
 
 export default defineEventHandler(async () => {
   const response = await $fetch('/api/mock/example2')

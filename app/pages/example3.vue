@@ -3,7 +3,7 @@ import { AutoForm } from '@/components/ui/auto-form'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { h } from 'vue'
 import { toast } from '~/components/ui/toast'
-import { type UpdateProductSchema, updateProductSchema } from '~~/server/schemas/product'
+import { type UpdateProductSchema, updateProductSchema } from '~~/schemas/product'
 
 // Type-safe with Zod validation
 const { data: response } = await useLazyFetch('/api/example2')
@@ -20,7 +20,17 @@ function onSubmit(values: UpdateProductSchema) {
 
 <template>
   <BaseSection>
-    <Card  class="mb-8">
+    <div v-if="response?.error">
+      <Card>
+        <CardHeader>
+          <CardTitle>Error</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <pre class="text-red-300 text-xs">Error: {{ response.error }}</pre>
+        </CardContent>
+      </Card>
+    </div>
+    <Card v-else class="mb-8">
       <CardHeader>
         <CardTitle>Example 3: Zod Schema Validation</CardTitle>
         <CardDescription class="text-green-500">
@@ -58,23 +68,14 @@ function onSubmit(values: UpdateProductSchema) {
             <Button type="submit">
                 Submit
               </Button>
-            </AutoForm> 
+            </AutoForm>
           </CardContent>
         </Card>
 
         <!-- Product List -->
-        <ProductList v-if="response?.success" :products="response?.data?.products" />
+        <ProductList v-if="response?.success" :products="response?.data" />
       </CardContent>
     </Card>
-    <div v-if="response?.error">
-      <Card>
-        <CardHeader>
-          <CardTitle>Error</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <pre class="text-red-200 text-xs">Error: {{ response.error }}</pre>
-        </CardContent>
-      </Card>
-    </div>
+
   </BaseSection>
 </template>
