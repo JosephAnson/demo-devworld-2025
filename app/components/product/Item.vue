@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { ProductSchema } from '~~/schemas/product'
-import { Card, CardContent } from '@/components/ui/card'
-import { XCircle } from 'lucide-vue-next'
+import { Card, CardContent } from '@/components/ui/card';
+import { XCircle } from 'lucide-vue-next';
+import type { ProductSchema } from '~~/schemas/product';
 
 interface Props {
   product: ProductSchema
@@ -16,7 +16,7 @@ defineProps<Props>()
       <h3 class="text-lg font-semibold mb-2">
         {{ product.name }}
       </h3>
-      <p class="text-sm text-muted-foreground mb-4">
+      <p class="text-sm text-muted-foreground mb-4 line-clamp-6">
         {{ product.description }}
       </p>
       <div class="space-y-1 text-sm">

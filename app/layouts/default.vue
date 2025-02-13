@@ -29,11 +29,6 @@ import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
                   Example 4: Implement AI object generation
                 </NuxtLink>
               </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NuxtLink to="/example4" :class="navigationMenuTriggerStyle()">
-                  Example 5: Drizzle, Zod, and Form Validation
-                </NuxtLink>
-              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
         </BaseContainer>

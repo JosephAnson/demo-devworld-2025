@@ -6,12 +6,19 @@ export const productSchema = z.object({
   name: z.string().min(2, {
     message: 'Product name must be at least 2 characters.',
   }),
-  description: z.string().min(20, {
-    message: 'Product description must be at least 20 characters.',
-  }),
-  price: z.number().positive({
-    message: 'Price must be a positive number.',
-  }),
+  description: z
+    .string()
+    .min(20, {
+      message: 'Product description must be at least 20 characters.',
+    }),
+  price: z
+    .number()
+    .positive({
+      message: 'Price must be a positive number.',
+    })
+    .min(1, {
+      message: 'Price must be at least 1.',
+    }),
   inStock: z.boolean(),
   status: z.enum(['AVAILABLE', 'DISCONTINUED']),
 })

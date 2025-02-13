@@ -52,7 +52,7 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "chrome-ai": "patches/chrome-ai.patch"
+      "chrome-ai@1.11.1": "patches/chrome-ai@1.11.1.patch"
     }
   }
 }

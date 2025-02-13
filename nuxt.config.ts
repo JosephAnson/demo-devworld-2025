@@ -1,7 +1,3 @@
-import { envSchema } from './schemas/env'
-
-envSchema.parse(process.env)
-
 export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
