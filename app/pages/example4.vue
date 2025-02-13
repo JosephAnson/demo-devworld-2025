@@ -1,40 +1,33 @@
 <script setup lang="ts">
-import { AutoForm } from '@/components/ui/auto-form'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { h } from 'vue'
-import { toast } from '~/components/ui/toast'
-import { productInsertSchema, type ProductInsertSchema } from '~~/drizzle/schema'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { generateObject } from "ai";
+import { chromeai } from "chrome-ai";
+import { productSchema, type ProductSchema } from '~~/schemas/product';
 
-// Type-safe with Zod validation
-const { data: response, refresh } = await useLazyFetch('/api/example4', {
-  method: 'GET',
-})
+const products = ref<ProductSchema[]>([])
+const productName = ref('')
 
-const products = computed(() => response.value?.data.reverse())
+async function generateProduct(message: string){
+  const result = await generateObject({
+    model: chromeai(),
+    prompt: `Generate a detailed product called ${message}, make it detailed and interesting. It should be a physical product, not software or a service and fit for a supermarket.`,
+    schema: productSchema
+  });
 
-async function onSubmit(values: ProductInsertSchema) {
-  await $fetch('/api/example4', {
-    method: 'POST',
-    body: values,
-  })
+  products.value.push(result.object)
+  productName.value = ""
 
-  console.log(values)
-  
-  await refresh()
-
-  toast({
-    title: 'Product Added',
-    description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2)),
-    ),
-  })
+  console.log('or', result.object)
 }
+
+
 </script>
 
 <template>
   <BaseSection>
     <Card class="mb-8">
       <CardHeader>
-        <CardTitle>Example 4: Drizzle, Zod, and Form Validation</CardTitle>
+        <CardTitle>Example 4: Generate using AI</CardTitle>
         <CardDescription class="text-green-500">
           ✅ This example uses Zod for runtime validation with AutoForm
         </CardDescription>
@@ -45,31 +38,14 @@ async function onSubmit(values: ProductInsertSchema) {
             <CardTitle>Add New Product</CardTitle>
           </CardHeader>
           <CardContent>
-            <AutoForm
-              :schema="productInsertSchema"
-              :field-config="{
-                name: {
-                  description: 'Enter the product name',
-                },
-                price: {
-                  description: 'Enter the product price',
-                  inputProps: {
-                    min: 0,
-                    step: 0.01,
-                  },
-                },
-                inStock: {
-                  component: 'switch',
-                  description: 'Is this product in stock?',
-                },
-              }"
-              class="space-y-6"
-              @submit="onSubmit"
-            >
-            <Button type="submit">
-                Submit
+            <div class="space-y-4">
+              <Label for="product-name">Product Name</Label>
+              <Input id="product-name" v-model="productName" />
+
+              <Button @click="generateProduct(productName)">
+                Generate
               </Button>
-            </AutoForm>
+            </div>
           </CardContent>
         </Card>
 
@@ -77,15 +53,12 @@ async function onSubmit(values: ProductInsertSchema) {
         <ProductList v-if="products" :products="products" />
       </CardContent>
     </Card>
-    <div v-if="response?.error">
-      <Card>
-        <CardHeader>
-          <CardTitle>Error</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <pre class="text-red-300 text-xs">Error: {{ response.error }}</pre>
-        </CardContent>
-      </Card>
-    </div>
+
   </BaseSection>
+
+
+  <p>
+      How to enable chrome ai in browser: <a href="https://docs.google.com/document/u/0/d/1VG8HIyz361zGduWgNG7R_R8Xkv0OOJ8b5C9QKeCjU0c/mobilebasic#h.pghp86scw27"> here  </a>
+    </p>
+
 </template>

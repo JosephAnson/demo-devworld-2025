@@ -6,6 +6,9 @@ export const productSchema = z.object({
   name: z.string().min(2, {
     message: 'Product name must be at least 2 characters.',
   }),
+  description: z.string().min(30, {
+    message: 'Product description must be at least 30 characters.',
+  }),
   price: z.number().positive({
     message: 'Price must be a positive number.',
   }),

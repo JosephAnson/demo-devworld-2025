@@ -1,0 +1,72 @@
+diff --git a/dist/index.js b/dist/index.js
+index 10e10e0572bab6e031a39c096b28a10b14aa0ec3..cbe9e8ab93734c7016d9f3c3639055cb982b2f97 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -153,11 +153,11 @@ var ChromeAIChatLanguageModel = class {
+     this.supportsStructuredOutputs = false;
+     this.getSession = (options) => __async(this, null, function* () {
+       var _a;
+-      if (!((_a = globalThis.ai) == null ? void 0 : _a.assistant)) {
++      if (!((_a = globalThis.ai) == null ? void 0 : _a.languageModel)) {
+         throw new import_provider.LoadSettingError({ message: "Browser not support" });
+       }
+       if (this.session) return this.session;
+-      const cap = yield ai.assistant.capabilities();
++      const cap = yield ai.languageModel.capabilities();
+       if (cap.available !== "readily" /* READILY */) {
+         throw new import_provider.LoadSettingError({ message: "Built-in model not ready" });
+       }
+@@ -165,7 +165,7 @@ var ChromeAIChatLanguageModel = class {
+         temperature: cap.defaultTemperature,
+         topK: cap.defaultTopK
+       }, this.options), options);
+-      this.session = yield ai.assistant.create(this.options);
++      this.session = yield ai.languageModel.create(this.options);
+       debug2("session created:", this.session, this.options);
+       return this.session;
+     });
+@@ -429,7 +429,7 @@ var PolyfillChromeAIAssistantFactory = class {
+ };
+ var polyfillChromeAI = (options) => {
+   const ai2 = {
+-    assistant: new PolyfillChromeAIAssistantFactory(options)
++    languageModel: new PolyfillChromeAIAssistantFactory(options)
+   };
+   globalThis.ai = globalThis.ai || ai2;
+   globalThis.model = globalThis.model || ai2;
+diff --git a/dist/index.mjs b/dist/index.mjs
+index ed8bffa41ab1e1df4be37b70c8e91d4d888b41f4..69ec1f2ce9d3a520a1038661e37bb2831dbd5563 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -119,11 +119,11 @@ var ChromeAIChatLanguageModel = class {
+     this.supportsStructuredOutputs = false;
+     this.getSession = (options) => __async(this, null, function* () {
+       var _a;
+-      if (!((_a = globalThis.ai) == null ? void 0 : _a.assistant)) {
++      if (!((_a = globalThis.ai) == null ? void 0 : _a.languageModel)) {
+         throw new LoadSettingError({ message: "Browser not support" });
+       }
+       if (this.session) return this.session;
+-      const cap = yield ai.assistant.capabilities();
++      const cap = yield ai.languageModel.capabilities();
+       if (cap.available !== "readily" /* READILY */) {
+         throw new LoadSettingError({ message: "Built-in model not ready" });
+       }
+@@ -131,7 +131,7 @@ var ChromeAIChatLanguageModel = class {
+         temperature: cap.defaultTemperature,
+         topK: cap.defaultTopK
+       }, this.options), options);
+-      this.session = yield ai.assistant.create(this.options);
++      this.session = yield ai.languageModel.create(this.options);
+       debug2("session created:", this.session, this.options);
+       return this.session;
+     });
+@@ -395,7 +395,7 @@ var PolyfillChromeAIAssistantFactory = class {
+ };
+ var polyfillChromeAI = (options) => {
+   const ai2 = {
+-    assistant: new PolyfillChromeAIAssistantFactory(options)
++    languageModel: new PolyfillChromeAIAssistantFactory(options)
+   };
+   globalThis.ai = globalThis.ai || ai2;
+   globalThis.model = globalThis.model || ai2;

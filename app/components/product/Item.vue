@@ -16,6 +16,9 @@ defineProps<Props>()
       <h3 class="text-lg font-semibold mb-2">
         {{ product.name }}
       </h3>
+      <p class="text-sm text-muted-foreground mb-4"> 
+        {{ product.description }}
+      </p>
       <div class="space-y-1 text-sm">
         <p class="flex justify-between">
           <span class="text-muted-foreground">Price:</span>
@@ -40,7 +43,7 @@ defineProps<Props>()
         <p class="flex justify-between">
           <span class="text-muted-foreground">Total:</span>
           <span class="font-medium">
-            ${{ product.price + 5 }} ($5 delivery)
+            ${{ Number(product.price + 5).toFixed(2) }} ($5 delivery)
           </span>
         </p>
       </div>

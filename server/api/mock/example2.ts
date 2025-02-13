@@ -5,6 +5,7 @@ export default defineEventHandler(() => {
       name: 'Product 1',
       price: '9.99',  // Intentionally wrong type (string instead of number)
       inStock: 'true', // Intentionally wrong type (string instead of boolean)
+      description: 'This is a description of product 1',
       status: 'AVAILABLE',
     },
     {
@@ -13,6 +14,7 @@ export default defineEventHandler(() => {
       price: '19.99', // Intentionally wrong type (string instead of number)
       inStock: 'false', // Intentionally wrong type (string instead of boolean)
       status: 'DISCONTNUED', // Intentionally spelt wrong
+      description: 'This is a description of product 2',
     },
   ]
 
