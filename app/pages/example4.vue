@@ -1,26 +1,25 @@
 <script setup lang="ts">
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { generateObject } from "ai";
-import { chromeai } from "chrome-ai";
-import { productSchema, type ProductSchema } from '~~/schemas/product';
+import type { ProductSchema } from '~~/schemas/product'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { generateObject } from 'ai'
+import { chromeai } from 'chrome-ai'
+import { productSchema } from '~~/schemas/product'
 
 const products = ref<ProductSchema[]>([])
 const productName = ref('')
 
-async function generateProduct(message: string){
+async function generateProduct(message: string) {
   const result = await generateObject({
     model: chromeai(),
     prompt: `Generate a detailed product called ${message}, make it detailed and interesting. It should be a physical product, not software or a service and fit for a supermarket.`,
-    schema: productSchema
-  });
+    schema: productSchema,
+  })
 
   products.value.push(result.object)
-  productName.value = ""
+  productName.value = ''
 
-  console.log('or', result.object)
+  console.log('result', result.object)
 }
-
-
 </script>
 
 <template>
@@ -38,14 +37,14 @@ async function generateProduct(message: string){
             <CardTitle>Add New Product</CardTitle>
           </CardHeader>
           <CardContent>
-            <div class="space-y-4">
+            <form class="space-y-4" @submit.prevent="generateProduct(productName)">
               <Label for="product-name">Product Name</Label>
               <Input id="product-name" v-model="productName" />
 
-              <Button @click="generateProduct(productName)">
+              <Button type="submit">
                 Generate
               </Button>
-            </div>
+            </form>
           </CardContent>
         </Card>
 
@@ -53,12 +52,8 @@ async function generateProduct(message: string){
         <ProductList v-if="products" :products="products" />
       </CardContent>
     </Card>
-
-  </BaseSection>
-
-
-  <p>
+    <p>
       How to enable chrome ai in browser: <a href="https://docs.google.com/document/u/0/d/1VG8HIyz361zGduWgNG7R_R8Xkv0OOJ8b5C9QKeCjU0c/mobilebasic#h.pghp86scw27"> here  </a>
     </p>
-
+  </BaseSection>
 </template>

@@ -1,8 +1,8 @@
-import { seed } from 'drizzle-seed';
-import { db } from './db';
-import { products } from './schema';
+import { seed } from 'drizzle-seed'
+import { db } from './db'
+import { products } from './schema'
 
 async function main() {
-    await seed(db, { products });
+  await seed(db, { products })
 }
-main();
+main()

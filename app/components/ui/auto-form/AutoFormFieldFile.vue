@@ -50,8 +50,8 @@ async function parseFileAsString(file: File | undefined): Promise<string> {
           <div v-else class="flex h-10 w-full items-center justify-between rounded-md border border-slate-200 bg-transparent pl-3 pr-1 py-1 text-sm shadow-sm transition-colors dark:border-slate-800">
             <p>{{ inputFile?.name }}</p>
             <Button
-              :size="'icon'"
-              :variant="'ghost'"
+              size="icon"
+              variant="ghost"
               class="h-[26px] w-[26px]"
               aria-label="Remove file"
               type="button"

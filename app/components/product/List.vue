@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { type ProductSchema } from '~~/schemas/product';
+import type { ProductSchema } from '~~/schemas/product'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 interface Props {
   products: ProductSchema[]

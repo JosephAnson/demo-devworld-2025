@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import Toaster from '@/components/ui/toast/Toaster.vue';
-import { ConfigProvider } from 'radix-vue';
+import Toaster from '@/components/ui/toast/Toaster.vue'
+import { ConfigProvider } from 'radix-vue'
 
 const useIdFunction = () => useId()
 </script>

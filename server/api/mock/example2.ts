@@ -1,9 +1,9 @@
 export default defineEventHandler(() => {
-  const mockProducts =  [
+  const mockProducts = [
     {
       id: '1',
       name: 'Product 1',
-      price: '9.99',  // Intentionally wrong type (string instead of number)
+      price: '9.99', // Intentionally wrong type (string instead of number)
       inStock: 'true', // Intentionally wrong type (string instead of boolean)
       description: 'This is a description of product 1',
       status: 'AVAILABLE',

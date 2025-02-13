@@ -63,5 +63,5 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/': { redirect: { to: '/example1' } },
-  }
+  },
 })

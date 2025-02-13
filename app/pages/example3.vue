@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import type { UpdateProductSchema } from '~~/schemas/product'
 import { AutoForm } from '@/components/ui/auto-form'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { h } from 'vue'
+import { updateProductSchema } from '~~/schemas/product'
 import { toast } from '~/components/ui/toast'
-import { type UpdateProductSchema, updateProductSchema } from '~~/schemas/product'
 
 // Type-safe with Zod validation
 const { data: response } = await useLazyFetch('/api/example2')
@@ -14,7 +15,6 @@ function onSubmit(values: UpdateProductSchema) {
     description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2)),
     ),
   })
-
 }
 </script>
 
@@ -65,7 +65,7 @@ function onSubmit(values: UpdateProductSchema) {
               class="space-y-6"
               @submit="onSubmit"
             >
-            <Button type="submit">
+              <Button type="submit">
                 Submit
               </Button>
             </AutoForm>
@@ -76,6 +76,5 @@ function onSubmit(values: UpdateProductSchema) {
         <ProductList v-if="response?.success" :products="response?.data" />
       </CardContent>
     </Card>
-
   </BaseSection>
 </template>

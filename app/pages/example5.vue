@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import type { ProductInsertSchema } from '~~/drizzle/schema'
 import { AutoForm } from '@/components/ui/auto-form'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { h } from 'vue'
+import { productInsertSchema } from '~~/drizzle/schema'
 import { toast } from '~/components/ui/toast'
-import { productInsertSchema, type ProductInsertSchema } from '~~/drizzle/schema'
 
 // Type-safe with Zod validation
 const { data: response, refresh } = await useLazyFetch('/api/example4', {
@@ -19,7 +20,7 @@ async function onSubmit(values: ProductInsertSchema) {
   })
 
   console.log(values)
-  
+
   await refresh()
 
   toast({
@@ -66,7 +67,7 @@ async function onSubmit(values: ProductInsertSchema) {
               class="space-y-6"
               @submit="onSubmit"
             >
-            <Button type="submit">
+              <Button type="submit">
                 Submit
               </Button>
             </AutoForm>

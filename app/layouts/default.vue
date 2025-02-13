@@ -11,27 +11,27 @@ import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
             <NavigationMenuList class="flex md:flex-row gap-4 flex-wrap flex-col items-start">
               <NavigationMenuItem>
                 <NuxtLink to="/" :class="navigationMenuTriggerStyle()">
-                    Example 1: Type Assertions
+                  Example 1: Type Assertions
                 </NuxtLink>
               </NavigationMenuItem>
               <NavigationMenuItem as-child>
                 <NuxtLink to="/example2" :class="navigationMenuTriggerStyle()">
-                    Example 2: Zod Validation
+                  Example 2: Zod Validation
                 </NuxtLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NuxtLink to="/example3" :class="navigationMenuTriggerStyle()">
-                    Example 3: Zod Form Validation
+                  Example 3: Zod Form Validation
                 </NuxtLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NuxtLink to="/example4" :class="navigationMenuTriggerStyle()">
-                    Example 4: Implement AI object generation
+                  Example 4: Implement AI object generation
                 </NuxtLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NuxtLink to="/example4" :class="navigationMenuTriggerStyle()">
-                    Example 5: Drizzle, Zod, and Form Validation
+                  Example 5: Drizzle, Zod, and Form Validation
                 </NuxtLink>
               </NavigationMenuItem>
             </NavigationMenuList>

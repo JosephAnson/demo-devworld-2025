@@ -18,6 +18,5 @@ export default defineEventHandler(() => {
     },
   ]
 
-
   return mockProducts
 })
