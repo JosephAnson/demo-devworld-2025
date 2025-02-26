@@ -26,24 +26,6 @@ pnpm install
 pnpm run dev
 ```
 
-3. To work with the database:
-
-```bash
-# Start the PostgreSQL database
-pnpm run docker:up
-
-# Push schema to database
-pnpm run db:push
-
-# View database with Drizzle Studio
-pnpm run db:studio
-
-# Seed the database with sample data
-pnpm run db:seed
-```
-
-Visit `http://localhost:3000` to see the demo in action.
-
 ## 🏗️ Project Structure
 
 - `/app` - Nuxt application code
@@ -59,7 +41,6 @@ Visit `http://localhost:3000` to see the demo in action.
 - [Nuxt 3](https://nuxt.com) - Full-stack Vue framework
 - [Zod](https://zod.dev) - TypeScript-first schema validation
 - [VeeValidate](https://vee-validate.logaretm.com/v4/) - Form validation with Zod integration
-- [Drizzle ORM](https://orm.drizzle.team) - Type-safe ORM
 - [shadcn-vue](https://www.shadcn-vue.com/) - UI components
 - [Chrome AI](https://github.com/google/chrome-ai) - AI integration for API generation
 

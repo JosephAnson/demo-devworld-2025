@@ -7,27 +7,25 @@ const { data: response } = await useLazyFetch('/api/example2')
 
 <template>
   <BaseSection>
-    <Card v-if="response?.success" class="mb-8">
+    <Card  class="mb-8">
       <CardHeader>
         <CardTitle>Example 2: Zod Schema Validation</CardTitle>
         <CardDescription class="text-green-500">
           ✅ This example uses Zod for api validation
         </CardDescription>
       </CardHeader>
-      <CardContent class="space-y-8">
+      <CardContent v-if="response?.success" class="space-y-8">
         <!-- Product List -->
         <ProductList :products="response.data" />
       </CardContent>
-    </Card>
-    <div v-else>
-      <Card>
+      <div v-else>
         <CardHeader>
           <CardTitle>Error</CardTitle>
         </CardHeader>
         <CardContent>
           <pre class="text-red-300 text-xs">Error: {{ response?.error }}</pre>
         </CardContent>
-      </Card>
-    </div>
+      </div>
+    </Card>
   </BaseSection>
 </template>

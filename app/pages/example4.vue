@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { ProductSchema } from '~~/schemas/product'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { generateObject } from 'ai'
 import { chromeai } from 'chrome-ai'
-import type { ProductSchema } from '~~/schemas/product'
 import { productSchema } from '~~/schemas/product'
 
 const products = ref<ProductSchema[]>([])
