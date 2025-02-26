@@ -6,9 +6,9 @@ A demo project showcasing end-to-end type safety with TypeScript, Zod, and Nuxt 
 
 - End-to-end type safety from database to frontend
 - Runtime validation with Zod
-- Auto-generated form validation
+- Auto-generated form validation with VeeValidate
 - Type-safe API endpoints
-- Database schema to TypeScript type generation
+- Integration with Chrome AI for API generation
 
 ## 🚀 Getting Started
 
@@ -19,40 +19,58 @@ A demo project showcasing end-to-end type safety with TypeScript, Zod, and Nuxt 
 pnpm install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+2. Start the development server on `http://localhost:3000`:
 
 ```bash
 # pnpm
 pnpm run dev
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+3. To work with the database:
+
+```bash
+# Start the PostgreSQL database
+pnpm run docker:up
+
+# Push schema to database
+pnpm run db:push
+
+# View database with Drizzle Studio
+pnpm run db:studio
+
+# Seed the database with sample data
+pnpm run db:seed
+```
 
 Visit `http://localhost:3000` to see the demo in action.
 
 ## 🏗️ Project Structure
 
-- `/server/schemas` - Zod schemas and type definitions
+- `/app` - Nuxt application code
+  - `/pages` - Frontend pages with example implementations
+  - `/components` - Vue components
+  - `/utils` - Utility functions
+- `/schemas` - Zod schemas and type definitions
 - `/server/api` - API endpoints with runtime validation
-- `/app/pages` - Frontend pages with type-safe forms
-- `/server/db` - Database schema and configuration
+- `/plugins` - Nuxt plugins
 
 ## 🛠️ Tech Stack
 
 - [Nuxt 3](https://nuxt.com) - Full-stack Vue framework
 - [Zod](https://zod.dev) - TypeScript-first schema validation
+- [VeeValidate](https://vee-validate.logaretm.com/v4/) - Form validation with Zod integration
 - [Drizzle ORM](https://orm.drizzle.team) - Type-safe ORM
 - [shadcn-vue](https://www.shadcn-vue.com/) - UI components
+- [Chrome AI](https://github.com/google/chrome-ai) - AI integration for API generation
 
 ## 📚 Examples
 
-The project includes three examples showcasing different approaches to type safety:
+The project includes four examples showcasing different approaches to type safety:
 
-1. Type Assertions (unsafe)
-2. Zod Schema Validation
-3. End-to-End Type Safety with Drizzle
+1. Type Assertions (unsafe) - `example1.vue`
+2. Zod Schema Validation - `example2.vue`
+3. Automatic Form Creation via Zod Schema - `example3.vue`
+4. API Generation via Chrome-based AI - `example4.vue`
 
 ## 📝 License
 
