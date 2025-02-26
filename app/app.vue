@@ -7,6 +7,12 @@ const useIdFunction = () => useId()
 
 <template>
   <ConfigProvider :use-id="useIdFunction">
+    <div class="header flex justify-between items-center p-4">
+      <div class="logo">
+        Dev World 2025 - Joseph Anson
+      </div>
+      <BaseThemeToggle />
+    </div>
     <div>
       <NuxtLayout>
         <NuxtPage />

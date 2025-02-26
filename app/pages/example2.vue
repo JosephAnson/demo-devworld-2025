@@ -7,7 +7,7 @@ const { data: response } = await useLazyFetch('/api/example2')
 
 <template>
   <BaseSection>
-    <Card  class="mb-8">
+    <Card class="mb-8">
       <CardHeader>
         <CardTitle>Example 2: Zod Schema Validation</CardTitle>
         <CardDescription class="text-green-500">
@@ -23,7 +23,7 @@ const { data: response } = await useLazyFetch('/api/example2')
           <CardTitle>Error</CardTitle>
         </CardHeader>
         <CardContent>
-          <pre class="text-red-300 text-xs">Error: {{ response?.error }}</pre>
+          <pre class="text-red-700 dark:text-red-300 text-xs">Error: {{ response?.error }}</pre>
         </CardContent>
       </div>
     </Card>
